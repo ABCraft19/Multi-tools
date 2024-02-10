@@ -2,5 +2,6 @@
     <Grid>
         <TextBlock Text="Bienvenue sur Multi-tools" VerticalAlignment="Top" Margin="10,10,215,0" Height="18" RenderTransformOrigin="0.474,0.436"/>
         <Button Content="pop-up webcam" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Width="135" Margin="10,220,0,0" />
+        <Button Content="installer powertoys" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Width="135" Margin="165,220,0,0" />
     </Grid>
 </Window>

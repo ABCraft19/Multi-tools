@@ -29,7 +29,7 @@ namespace Multi_Tools
         // ...
 
         // Ajoutez cette méthode pour modifier le Registre et journaliser les actions
-        public static void ModifyRegistry()
+        public static void ModifyRegistrycam()
         {
             try
             {
