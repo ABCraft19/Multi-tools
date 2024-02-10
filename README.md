@@ -8,13 +8,15 @@ Une réunion de plusieurs couteaux suisse avec une jolie interface graphique pou
 
 **Introduction :**&#x20;
 
-Oui, encore un outil de customisation de windows. Mais pas comme les autres !
+Oui, encore un outil de customisation de Windows. Mais pas comme les autres !
 
 Cette outil réunis plusieurs outils tels que Unowhy-Tools par STY1001, une interface graphique pour winget, ViveTools, march2 et d'autre qui vont venir avec le temps.
 
 
 
-Le but :
+**Le but :**
+
+Tout cela est fait afin de leurs donner une jolie interface graphique avec comme langage de programmation le C# WPF et de rendre accessible la configuration rapide d'un ordinateur sous Windows.
 
 
 
