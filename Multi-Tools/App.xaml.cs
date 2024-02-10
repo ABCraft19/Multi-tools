@@ -98,7 +98,7 @@ namespace Multi_Tools
                 MessageBox.Show($"Une erreur s'est produite : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        public static void powertoys()
+        public static void PowerToys()
         {
             try
             {
@@ -119,7 +119,66 @@ namespace Multi_Tools
                 string timestamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm");
 
                 // Construisez le message de journalisation avec le timestamp
-                string logMessage = $"{timestamp} - Registre modifié avec succès";
+                string logMessage = $"{timestamp} - PowerToys installer avec succès";
+
+                // Journalisation du succès
+                System.Diagnostics.Trace.WriteLine(logMessage);
+
+                // Affichez une confirmation à l'utilisateur
+                MessageBox.Show("L'installation a été exécutée avec succès !", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Obtenez le timestamp au format demandé
+                string timestamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm");
+
+                // Construisez le message de journalisation avec le timestamp
+                string logMessage = $"{timestamp} - Erreur d'autorisation : {ex.Message}";
+
+                // Journalisation de l'erreur d'autorisation
+                System.Diagnostics.Trace.WriteLine(logMessage);
+
+                // Affichez un message d'erreur à l'utilisateur avec le code d'erreur
+                MessageBox.Show($"Erreur d'autorisation : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                // Obtenez le timestamp au format demandé
+                string timestamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm");
+
+                // Construisez le message de journalisation avec le timestamp
+                string logMessage = $"{timestamp} - Une erreur s'est produite : {ex.Message}";
+
+                // Journalisation de l'erreur générale
+                System.Diagnostics.Trace.WriteLine(logMessage);
+
+                // Affichez un message d'erreur générique à l'utilisateur avec le code d'erreur
+                MessageBox.Show($"Une erreur s'est produite : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public static void UnowhyTools()
+        {
+            try
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = "winget"; // Spécifiez le nom de l'exécutable
+                process.StartInfo.Arguments = "install 'Unowhy Tools'"; // Spécifiez les arguments de la commande winget pour installer PowerToys
+                process.StartInfo.UseShellExecute = false; // N'utilisez pas le shell de démarrage
+                process.StartInfo.RedirectStandardOutput = true; // Redirigez la sortie standard pour récupérer la sortie de la commande
+                process.Start(); // Lancez le processus
+
+                // Attendez que le processus se termine
+                process.WaitForExit();
+
+                // Lisez la sortie standard pour récupérer les résultats de la commande
+                string output = process.StandardOutput.ReadToEnd();
+
+                // Obtenez le timestamp au format demandé
+                string timestamp = DateTime.Now.ToString("dd-MM-yyyy-HH-mm");
+
+                // Construisez le message de journalisation avec le timestamp
+                string logMessage = $"{timestamp} - Unowhy Tools installer avec succès";
 
                 // Journalisation du succès
                 System.Diagnostics.Trace.WriteLine(logMessage);

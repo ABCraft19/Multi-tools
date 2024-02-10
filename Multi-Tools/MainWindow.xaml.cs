@@ -18,8 +18,12 @@ namespace Multi_tools
 
         private void Button_InstallPowerToys_Click(object sender, RoutedEventArgs e)
         {
-            // Créez un processus pour exécuter la commande winget
-            App.powertoys();
+            App.PowerToys();
+        }
+
+        private void Button_InstallUnowhyTools_Click(object sender, RoutedEventArgs e)
+        {
+            App.UnowhyTools();
         }
     }
  }
