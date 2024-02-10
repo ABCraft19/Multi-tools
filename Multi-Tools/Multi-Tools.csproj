@@ -9,6 +9,7 @@
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64</Platforms>
     <UseWindowsForms>False</UseWindowsForms>
+    <StartupObject>Multi_Tools.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
