@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Security.Principal;
 using System.Windows;
 using Microsoft.Win32;
-using Multi_tools;
 
 namespace Multi_Tools
 {
@@ -11,14 +11,43 @@ namespace Multi_Tools
         [STAThread]
         public static void Main()
         {
+            // Vérifiez si l'application est lancée en tant qu'administrateur
+            if (!IsRunningAsAdministrator())
+            {
+                // Si elle ne l'est pas, relancez l'application en tant qu'administrateur
+                RestartAsAdministrator();
+                return;
+            }
+
             var app = new App();
-            app.InitializeComponent();
             app.Run();
         }
 
-        private void InitializeComponent()
+        // Vérifie si l'application est lancée en tant qu'administrateur
+        private static bool IsRunningAsAdministrator()
         {
-            throw new NotImplementedException();
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        // Relance l'application en tant qu'administrateur
+        private static void RestartAsAdministrator()
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.UseShellExecute = true;
+            startInfo.WorkingDirectory = Environment.CurrentDirectory;
+            startInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+            startInfo.Verb = "runas"; // Exécuter avec des privilèges d'administrateur
+
+            try
+            {
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors du redémarrage de l'application en tant qu'administrateur : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         protected override void OnStartup(StartupEventArgs e)
