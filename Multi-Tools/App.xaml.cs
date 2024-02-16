@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Security.Principal;
 using System.Windows;
 using Microsoft.Win32;
+using Multi_Tools;
 
 namespace Multi_Tools
 {
@@ -52,10 +53,11 @@ namespace Multi_Tools
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-
             // Ajoutez cet événement au démarrage de l'application
-            Startup += App_Startup;
+            Startup += App_Startup;                                             // <--- Il faut que l'ajout de cet événement soit fait avant le démarrage de l'application
+
+            // Démarrer l'application
+            base.OnStartup(e);
 
             // Configurer le système de journalisation ici si nécessaire
             System.Diagnostics.Trace.Listeners.Add(new System.Diagnostics.TextWriterTraceListener("log.txt"));
@@ -65,7 +67,7 @@ namespace Multi_Tools
         private void App_Startup(object sender, StartupEventArgs e)
         {
             // Affichez votre fenêtre principale ici, si nécessaire
-            MainWindow mainWindow = new MainWindow();
+            Multi_tools.MainWindow mainWindow = new Multi_tools.MainWindow();
             mainWindow.Show();
         }
 
