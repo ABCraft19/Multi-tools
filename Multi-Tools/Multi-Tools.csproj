@@ -10,6 +10,7 @@
     <Platforms>AnyCPU;x64</Platforms>
     <UseWindowsForms>False</UseWindowsForms>
     <StartupObject>Multi_Tools.App</StartupObject>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
