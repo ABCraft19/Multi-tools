@@ -54,8 +54,7 @@ namespace Multi_Tools
         protected override void OnStartup(StartupEventArgs e)
         {
             // Ajoutez cet événement au démarrage de l'application
-            Startup += App_Startup;                                             // <--- Il faut que l'ajout de cet événement soit fait avant le démarrage de l'application
-
+            Startup += App_Startup;                                             
             // Démarrer l'application
             base.OnStartup(e);
 
