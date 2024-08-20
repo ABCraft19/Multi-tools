@@ -1,0 +1,102 @@
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Threading;
+using Wpf.Ui;
+using System;
+using System.Diagnostics;
+using System.Security.Principal;
+using Microsoft.Win32;
+using static MultiTools.Installation.InstallationWindow;
+
+namespace MultiTools
+{
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App
+    {
+        [STAThread]
+
+        // Vérifie si l'application est lancée en tant qu'administrateur
+        private static bool IsRunningAsAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        // Relance l'application en tant qu'administrateur
+        private static void RestartAsAdministrator()
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.UseShellExecute = true;
+            startInfo.WorkingDirectory = Environment.CurrentDirectory;
+            startInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+            startInfo.Verb = "runas"; // Exécuter avec des privilèges d'administrateur
+
+            try
+            {
+                Process.Start(startInfo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors du redémarrage de l'application en tant qu'administrateur : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private static readonly IHost _host = Host
+            .CreateDefaultBuilder()
+            .ConfigureAppConfiguration(c => { c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)); })
+            .ConfigureServices((context, services) =>
+            {
+                services.AddSingleton<MultiTools.Installation.InstallationWindow>();
+                services.AddTransient<MainWindow>();
+                //throw new NotImplementedException("Oulà je crois que tu as oublié de déclarer des trucs !");
+            }).Build();
+
+        /// <summary>
+        /// Gets registered service.
+        /// </summary>
+        /// <typeparam name="T">Type of the service to get.</typeparam>
+        /// <returns>Instance of the service or <see langword="null"/>.</returns>
+        public static T GetService<T>()
+            where T : class
+        {
+            return _host.Services.GetService(typeof(T)) as T;
+        }
+
+        /// <summary>
+        /// Occurs when the application is loading.
+        /// </summary>
+        private void OnStartup(object sender, StartupEventArgs e)
+        {
+
+            _host.Start();
+            var mainWindow = _host.Services.GetRequiredService<MainWindow>();
+            mainWindow.Show();
+        }
+
+        /// <summary>
+        /// Occurs when the application is closing.
+        /// </summary>
+        private async void OnExit(object sender, ExitEventArgs e)
+        {
+            await _host.StopAsync();
+
+            _host.Dispose();
+        }
+
+        /// <summary>
+        /// Occurs when an exception is thrown by an application but not handled.
+        /// </summary>
+        private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            // For more info see https://docs.microsoft.com/en-us/dotnet/api/system.windows.application.dispatcherunhandledexception?view=windowsdesktop-6.0
+        }
+
+    }
+}
