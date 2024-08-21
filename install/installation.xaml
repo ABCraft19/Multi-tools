@@ -1,0 +1,26 @@
+<Window
+    x:Class="MultiTools.Installation.InstallationWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MultiTools"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="Multi-tools"
+    
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d">
+
+    <Grid RenderTransformOrigin="0.504,0.486">
+        <TextBlock Text="Installation" VerticalAlignment="Top" Margin="95,10,130,0" Height="18" RenderTransformOrigin="0.474,0.436"/>
+        <WrapPanel HorizontalAlignment="Center" Height="115" Margin="0,209,0,0" VerticalAlignment="Top" Width="680">
+            <Button x:Name="popup_webcam" Content="pop-up webcam" Click="Button_PopupWebcam_Click" Width="133" Height="40" />
+            <Button x:Name="install_powertoys" Content="installer powertoys" Click="Button_PowerToys_Click" Width="150" Height="40" />
+            <Button x:Name="install_unowhy_tools" Content="installer Unowhy-Tools" Click="Button_UnowhyTools_Click" Width="176" Height="40" />
+        </WrapPanel>
+    </Grid>
+</Window>
