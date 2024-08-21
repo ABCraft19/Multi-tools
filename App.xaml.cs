@@ -32,7 +32,7 @@ namespace MultiTools
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.UseShellExecute = true;
             startInfo.WorkingDirectory = Environment.CurrentDirectory;
-            startInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+            startInfo.FileName = Environment.ProcessPath;
             startInfo.Verb = "runas"; // Exécuter avec des privilèges d'administrateur
 
             try
