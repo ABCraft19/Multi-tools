@@ -17,9 +17,10 @@
 
     <Grid RenderTransformOrigin="0.504,0.486">
         <TextBlock Text="Bienvenue sur Multi-tools" VerticalAlignment="Top" Margin="130,10,95,0" Height="18" RenderTransformOrigin="0.474,0.436"/>
-        <ui:NavigationView PaneDisplayMode="LeftFluent">
+        <ui:NavigationView IsBackButtonVisible="Auto">
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Content="Home" Icon="Home24"/>
+                <ui:NavigationViewItem Content="Installation" Icon="Apps16"/>
             </ui:NavigationView.MenuItems>
         </ui:NavigationView>
 

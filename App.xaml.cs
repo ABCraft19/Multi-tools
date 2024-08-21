@@ -1,16 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Security.Principal;
 using System.Windows;
 using System.Windows.Threading;
-using Wpf.Ui;
-using System;
-using System.Diagnostics;
-using System.Security.Principal;
-using Microsoft.Win32;
-using static MultiTools.Installation.InstallationWindow;
+using Wpf.Ui.Controls;
 
 namespace MultiTools
 {
@@ -44,7 +41,7 @@ namespace MultiTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors du redémarrage de l'application en tant qu'administrateur : {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+               System.Windows.MessageBox.Show($"Erreur lors du redémarrage de l'application en tant qu'administrateur : {ex.Message}", "Erreur", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -55,6 +52,7 @@ namespace MultiTools
             {
                 services.AddSingleton<MultiTools.Installation.InstallationWindow>();
                 services.AddTransient<MainWindow>();
+                services.AddSingleton<NavigationView>();
                 //throw new NotImplementedException("Oulà je crois que tu as oublié de déclarer des trucs !");
             }).Build();
 
