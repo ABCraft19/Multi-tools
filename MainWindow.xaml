@@ -17,12 +17,12 @@
 
     <Grid RenderTransformOrigin="0.504,0.486">
         <TextBlock Text="Bienvenue sur Multi-tools" VerticalAlignment="Top" Margin="130,10,95,0" Height="18" RenderTransformOrigin="0.474,0.436"/>
-        <ui:NavigationView IsBackButtonVisible="Auto">
+        <ui:NavigationView x:Name="Dash" IsBackButtonVisible="Auto" PaneDisplayMode="Left">
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="Home" Icon="Home24"/>
-                <ui:NavigationViewItem Content="Installation" Icon="Apps16"/>
+                <ui:NavigationViewItem Content="Home" Icon="Home24" Tag="Dash"/>
+                <ui:NavigationViewItem Content="Installation de Logiciel" Icon="Apps16" Tag="InstallationPage"/>
             </ui:NavigationView.MenuItems>
         </ui:NavigationView>
-
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="200,0,0,0"/>
     </Grid>
 </Window>

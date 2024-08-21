@@ -22,10 +22,10 @@ namespace MultiTools
             .ConfigureAppConfiguration(c => { c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)); })
             .ConfigureServices((context, services) =>
             {
-                services.AddSingleton<MultiTools.Installation>();
+                // services.AddTransient<MultiTools.Pages.Dash>();
+                services.AddTransient<MultiTools.Installation.InstallationWindow>();
                 services.AddTransient<MainWindow>();
                 services.AddSingleton<NavigationView>();
-                //throw new NotImplementedException("Oulà je crois que tu as oublié de déclarer des trucs !");
             }).Build();
 
         /// <summary>

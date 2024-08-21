@@ -6,39 +6,41 @@ namespace MultiTools
 {
     public partial class MainWindow : Window
     {
-        public InstallationWindow _installationWindow { get; }
-
-        public MainWindow(NavigationView navigation)
+        public MainWindow()
         {
-            DataContext = this;
-
             InitializeComponent();
-
-            // Get the service
-            _installationWindow = App.GetService<InstallationWindow>();
-
-            // Use the service
-            if (_installationWindow != null)
+            // Ensure navigationView (Dash) is properly initialized before attaching the event handler
+            this.Loaded += (s, e) =>
             {
-                // Show the window
-                _installationWindow.Show();
+                if (Dash != null)
+                {
+                    Dash.SelectionChanged += OnNavigationViewSelectionChanged;
+                }
+                else
+                {
+                    // Handle the null case appropriately, e.g., log an error or throw an exception
+                    System.Windows.MessageBox.Show("NavigationView 'Dash' is not initialized.", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+            };
+        }
+
+        private void OnNavigationViewSelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (Dash.SelectedItem is NavigationViewItem selectedItem)
+            {
+                switch (selectedItem.Tag)
+                {
+                    case "HomePage":
+                        MainFrame.Navigate(new System.Uri("Dash/Dash.xaml", System.UriKind.Relative));
+                        break;
+                    case "InstallationPage":
+                        MainFrame.Navigate(new System.Uri("Installation/Installation.xaml", System.UriKind.Relative));
+                        break;
+                }
             }
         }
 
-        // Call static methods using the class name
-        public void Button_PopupWebcam_Click(object sender, RoutedEventArgs e)
-        {
-            InstallationWindow.ModifyRegistryCam();
-        }
-
-        public void Button_PowerToys_Click(object sender, RoutedEventArgs e)
-        {
-            InstallationWindow.InstallPowerToys();
-        }
-
-        public void Button_UnowhyTools_Click(object sender, RoutedEventArgs e)
-        {
-            InstallationWindow.InstallUnowhyTools();
-        }
+        // Remove this property as it is not needed
+        // public NavigationView navigationView { get; set; }
     }
 }
