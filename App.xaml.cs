@@ -16,41 +16,13 @@ namespace MultiTools
     /// </summary>
     public partial class App
     {
-        [STAThread]
-
-        // Vérifie si l'application est lancée en tant qu'administrateur
-        private static bool IsRunningAsAdministrator()
-        {
-            WindowsIdentity identity = WindowsIdentity.GetCurrent();
-            WindowsPrincipal principal = new WindowsPrincipal(identity);
-            return principal.IsInRole(WindowsBuiltInRole.Administrator);
-        }
-
-        // Relance l'application en tant qu'administrateur
-        private static void RestartAsAdministrator()
-        {
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.UseShellExecute = true;
-            startInfo.WorkingDirectory = Environment.CurrentDirectory;
-            startInfo.FileName = Environment.ProcessPath;
-            startInfo.Verb = "runas"; // Exécuter avec des privilèges d'administrateur
-
-            try
-            {
-                Process.Start(startInfo);
-            }
-            catch (Exception ex)
-            {
-               System.Windows.MessageBox.Show($"Erreur lors du redémarrage de l'application en tant qu'administrateur : {ex.Message}", "Erreur", System.Windows.MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
 
         private static readonly IHost _host = Host
             .CreateDefaultBuilder()
             .ConfigureAppConfiguration(c => { c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)); })
             .ConfigureServices((context, services) =>
             {
-                services.AddSingleton<MultiTools.Installation.InstallationWindow>();
+                services.AddSingleton<MultiTools.Installation>();
                 services.AddTransient<MainWindow>();
                 services.AddSingleton<NavigationView>();
                 //throw new NotImplementedException("Oulà je crois que tu as oublié de déclarer des trucs !");
