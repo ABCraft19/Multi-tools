@@ -8,6 +8,7 @@ using System.Security.Principal;
 using System.Windows;
 using System.Windows.Threading;
 using Wpf.Ui.Controls;
+using MultiTools.Pages;
 
 namespace MultiTools
 {
@@ -22,8 +23,8 @@ namespace MultiTools
             .ConfigureAppConfiguration(c => { c.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location)); })
             .ConfigureServices((context, services) =>
             {
-                // services.AddTransient<MultiTools.Pages.Dash>();
-                services.AddTransient<MultiTools.Installation.InstallationWindow>();
+                services.AddTransient<DashWindow>();
+                services.AddTransient<InstallationWindow>();
                 services.AddTransient<MainWindow>();
                 services.AddSingleton<NavigationView>();
             }).Build();

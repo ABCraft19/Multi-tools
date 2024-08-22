@@ -1,8 +1,9 @@
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Windows;
+using MultiTools.Pages;
 
-namespace MultiTools.Installation
+namespace MultiTools.Pages.Installation
 {
     public interface IInstaller
     {
@@ -35,7 +36,7 @@ namespace MultiTools.Installation
             InstallUnowhyTools();
         }
 
-        public static void ModifyRegistryCam()
+        public void ModifyRegistryCam()
         {
             try
             {
@@ -64,7 +65,7 @@ namespace MultiTools.Installation
             }
         }
 
-        public static void InstallPowerToys()
+        public void InstallPowerToys()
         {
             try
             {
@@ -102,7 +103,7 @@ namespace MultiTools.Installation
             }
         }
 
-        public static void InstallUnowhyTools()
+        public void InstallUnowhyTools()
         {
             try
             {

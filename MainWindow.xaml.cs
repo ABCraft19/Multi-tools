@@ -1,4 +1,4 @@
-using MultiTools.Installation;
+using MultiTools.Pages;
 using System.Windows;
 using Wpf.Ui.Controls;
 
@@ -31,10 +31,10 @@ namespace MultiTools
                 switch (selectedItem.Tag)
                 {
                     case "HomePage":
-                        MainFrame.Navigate(new System.Uri("Dash/Dash.xaml", System.UriKind.Relative));
+                        MainFrame.Navigate(new System.Uri("Pages/Dash.xaml", System.UriKind.Relative));
                         break;
                     case "InstallationPage":
-                        MainFrame.Navigate(new System.Uri("Installation/Installation.xaml", System.UriKind.Relative));
+                        MainFrame.Navigate(new System.Uri("Pages/Installation.xaml", System.UriKind.Relative));
                         break;
                 }
             }
