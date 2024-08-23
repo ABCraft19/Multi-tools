@@ -1,4 +1,5 @@
 <Window
+    
     x:Class="MultiTools.Pages.DashWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,6 +16,7 @@
     Foreground="{DynamicResource TextFillColorPrimaryBrush}"
     mc:Ignorable="d">
     <Grid RenderTransformOrigin="0.504,0.486">
+        <ui:NavigationView x:Name="NavBar"></ui:NavigationView>
         <TextBlock HorizontalAlignment="Left" Height="115" TextWrapping="Wrap" VerticalAlignment="Top" Width="391" Margin="388,183,0,0"><Run Text="Welcome"/><LineBreak/><Run/></TextBlock>
     </Grid>
 </Window>

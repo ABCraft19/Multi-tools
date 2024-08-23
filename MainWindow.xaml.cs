@@ -8,7 +8,10 @@ namespace MultiTools
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent(NavigationPageModel model);
+
+            DataContext = model;
+            Loaded += (_, _) => Dash.Navigate(type(MyDashboardClass));
             // Ensure navigationView (Dash) is properly initialized before attaching the event handler
             this.Loaded += (s, e) =>
             {

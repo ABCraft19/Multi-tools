@@ -16,11 +16,33 @@
     mc:Ignorable="d">
 
     <Grid RenderTransformOrigin="0.504,0.486">
-        <TextBlock Text="Bienvenue sur Multi-tools" VerticalAlignment="Top" Margin="130,10,95,0" Height="18" RenderTransformOrigin="0.474,0.436"/>
-        <ui:NavigationView x:Name="Dash" IsBackButtonVisible="Auto" PaneDisplayMode="Left">
+        <ui:NavigationView x:Name="Dash" Grid.Row="1">
+            <ui:NavigationView.AutoSuggestBox>
+                <ui:AutoSuggestBox x:Name="AutoSuggestBox" PlaceholderText="Search">
+                    <ui:AutoSuggestBox.Icon>
+                        <ui:IconSourceElement>
+                            <ui:SymbolIconSource Symbol="Search24" />
+                        </ui:IconSourceElement>
+                    </ui:AutoSuggestBox.Icon>
+                </ui:AutoSuggestBox>
+            </ui:NavigationView.AutoSuggestBox>
+            <ui:NavigationView.Header>
+                <ui:BreadcrumbBar
+      Margin="42,32,0,0"
+      FontSize="28"
+      FontWeight="DemiBold" />
+            </ui:NavigationView.Header>
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="Home" Icon="Home24" Tag="Dash"/>
-                <ui:NavigationViewItem Content="Installation de Logiciel" Icon="Apps16" Tag="InstallationPage"/>
+                <ui:NavigationViewItem Content="Dashboard" TargetPageType="{x:Type pages:DashWindow}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Home24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Installer" TargetPageType="{x:Type pages:Installation}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="DataHistogram24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
         </ui:NavigationView>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="200,0,0,0"/>
