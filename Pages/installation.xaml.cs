@@ -20,6 +20,10 @@ namespace MultiTools.Pages.Installation
 
     public partial class InstallationWindow : Window
     {
+        public InstallationWindow()
+        {
+            InitializeComponent();
+        }
 
         public void Button_PopupWebcam_Click(object sender, RoutedEventArgs e)
         {

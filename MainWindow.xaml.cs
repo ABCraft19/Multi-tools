@@ -6,12 +6,12 @@ namespace MultiTools
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(NavigationPageModel model)
         {
-            InitializeComponent(NavigationPageModel model);
+            InitializeComponent();
 
             DataContext = model;
-            Loaded += (_, _) => Dash.Navigate(type(MyDashboardClass));
+            Loaded += (_, _) => Dash.Navigate(typeof(DashWindow));
             // Ensure navigationView (Dash) is properly initialized before attaching the event handler
             this.Loaded += (s, e) =>
             {
@@ -42,8 +42,5 @@ namespace MultiTools
                 }
             }
         }
-
-        // Remove this property as it is not needed
-        // public NavigationView navigationView { get; set; }
     }
 }

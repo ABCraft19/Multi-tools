@@ -33,12 +33,12 @@
       FontWeight="DemiBold" />
             </ui:NavigationView.Header>
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="Dashboard" TargetPageType="{x:Type pages:DashWindow}">
+                <ui:NavigationViewItem Content="Dashboard">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Home24" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
-                <ui:NavigationViewItem Content="Installer" TargetPageType="{x:Type pages:Installation}">
+                <ui:NavigationViewItem Content="Installer">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="DataHistogram24" />
                     </ui:NavigationViewItem.Icon>
